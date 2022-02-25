@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WeatherInfo.Services.OpenWeatherMap;
 
 namespace WeatherInfo
 {
@@ -13,6 +14,7 @@ namespace WeatherInfo
     {
         public static void Main(string[] args)
         {
+            OpenWeatherMap.InitializeCitiesFromFile();
             CreateHostBuilder(args).Build().Run();
         }
 
