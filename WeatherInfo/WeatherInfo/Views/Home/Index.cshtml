@@ -11,7 +11,21 @@
 <div class="container">
     <form action="index" method="post">
         <div class="text-center">
-            @Html.DropDownListFor(x => x.Cities.First().Id, new SelectList(Model.Cities, "Id", "Name"))
+            @Html.DropDownListFor(x => x.Cities, new SelectList(Model.Cities, "Id", "Name", Model.Cities.First().Id), "Select a city", new
+       {
+           @class = "form-control selectpicker"
+       })
         </div>
     </form>
 </div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker({
+                liveSearch: true,
+                showSubtext: true
+            });
+        });
+    </script>
+}
