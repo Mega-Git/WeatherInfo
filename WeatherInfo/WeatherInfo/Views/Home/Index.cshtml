@@ -2,6 +2,8 @@
     ViewData["Title"] = "Home Page";
 }
 
+@model WeatherCityListModel
+
 <div class="text-center">
     <h1 class="display-4">Select a city</h1>
 </div>
@@ -9,9 +11,7 @@
 <div class="container">
     <form action="index" method="post">
         <div class="text-center">
-            <select>
-                <option value="value">placeholder</option>
-            </select>
+            @Html.DropDownListFor(x => x.Cities.First().Id, new SelectList(Model.Cities, "Id", "Name"))
         </div>
     </form>
 </div>
