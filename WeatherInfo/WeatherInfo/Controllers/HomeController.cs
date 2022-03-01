@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WeatherInfo.Models;
+using WeatherInfo.Services.OpenWeatherMap;
 
 namespace WeatherInfo.Controllers
 {
@@ -20,7 +21,13 @@ namespace WeatherInfo.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var cityList = OpenWeatherMap.CityList;
+            var model = new WeatherCityListModel
+            {
+                Cities = cityList
+            };
+
+            return View(model);
         }
 
         public IActionResult Privacy()
