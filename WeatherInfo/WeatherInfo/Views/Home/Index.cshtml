@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model WeatherCityListModel
+
+<div class="text-center">
+    <h1 class="display-4">Select a city</h1>
+</div>
+
+<div class="container">
+    <form action="index" method="post">
+        <div class="text-center">
+            @Html.DropDownListFor(x => x.Cities, new SelectList(Model.Cities, "Id", "Name", Model.Cities.First().Id), "Select a city", new
+       {
+           @class = "form-control selectpicker"
+       })
+        </div>
+    </form>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker({
+                liveSearch: true,
+                liveSearchNormalize: true,
+                liveSearchPlaceholder: "City name",
+                virtualScroll: true
+            });
+        });
+    </script>
+}
