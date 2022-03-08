@@ -1,0 +1,32 @@
+﻿@model WeatherInfo.Models.WeatherReportModel
+
+@{
+    ViewData["Title"] = "Weather";
+    var WeatherIcon = Model.Report.Weather.First().Icon;
+}
+
+<h1>Weather</h1>
+
+<div class="container">
+    <div class="card">
+        <h5 class="card-header">
+            @Model.Report.Name
+        </h5>
+        <img src="http://openweathermap.org/img/w/${WeatherIcon}.png" class="card-img-top" alt="icon">
+        <div class="card-body">
+            <h6 class="card-title">
+                Weather summary:
+            </h6>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@Model.Report.Weather.First().Description</li>
+                <li class="list-group-item">Temperature: @Model.Report.Main.Temp</li>
+                <li class="list-group-item">Pressure: @Model.Report.Main.Pressure</li>
+                <li class="list-group-item">Humidity: @Model.Report.Main.Humidity</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to city selection</a>
+</div>
