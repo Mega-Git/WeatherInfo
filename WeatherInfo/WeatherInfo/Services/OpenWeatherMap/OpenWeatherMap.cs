@@ -29,7 +29,7 @@ namespace WeatherInfo.Services.OpenWeatherMap
             var API_key = EnvReader.GetStringValue("API_KEY");
             string city_id = cityId;
             string units = "metric";
-            string URL = $"api.openweathermap.org/data/2.5/weather?id={city_id}&appid={API_key}&units={units}";
+            string URL = $"https://api.openweathermap.org/data/2.5/weather?id={city_id}&appid={API_key}&units={units}";
             var response = client.GetAsync(URL).Result;
             var report = JsonConvert.DeserializeObject<WeatherReport>(response.Content.ReadAsStringAsync().Result);
             return report;
