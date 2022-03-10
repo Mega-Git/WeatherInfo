@@ -40,5 +40,21 @@ namespace WeatherInfo.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Weather(WeatherReportModel model)
+        {
+            return View(model);
+        }
+
+        public IActionResult CheckWeather(City city)
+        {
+            var cityId = city.Id.ToString();
+            var report = OpenWeatherMap.GetReportByCityId(cityId);
+            var model = new WeatherReportModel
+            {
+                Report = report
+            };
+            return View("Weather", model);
+        }
     }
 }
