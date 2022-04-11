@@ -56,5 +56,16 @@ namespace WeatherInfo.Controllers
             };
             return View("Weather", model);
         }
+
+        public IActionResult Country()
+        {
+            var cityList = OpenWeatherMap.CityList;
+            var model = new CountryListModel
+            {
+                CountryList = cityList.GroupBy(x => x.Country).Select(x => x.First().Country).Distinct().ToList()
+            };
+
+            return View(model);
+        }
     }
 }
