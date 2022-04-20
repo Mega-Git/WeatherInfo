@@ -7,6 +7,7 @@ namespace WeatherInfo.Models
 {
     public class CountryListModel
     {
+        public string Country { get; set; }
         public List<string> CountryList { get; set; }
     }
 }

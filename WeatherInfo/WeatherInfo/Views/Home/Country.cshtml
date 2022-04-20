@@ -5,10 +5,10 @@
 </div>
 
 <div class="container">
-    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    @using (Html.BeginForm("CountrySelect", "Home", FormMethod.Post))
     {
         <div class="text-center">
-            @Html.DropDownListFor(x => x.CountryList, new SelectList(Model.CountryList), "Select a country", new
+            @Html.DropDownListFor(x => x.Country, new SelectList(Model.CountryList), "Select a country", new
        {
            @class = "form-control selectpicker"
        })
