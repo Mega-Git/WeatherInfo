@@ -1,0 +1,31 @@
+﻿@model CountryListModel
+
+<div class="text-center">
+    <h1 class="display-4">Select a country</h1>
+</div>
+
+<div class="container">
+    @using (Html.BeginForm("CountrySelect", "Home", FormMethod.Post))
+    {
+        <div class="text-center">
+            @Html.DropDownListFor(x => x.Country, new SelectList(Model.CountryList), "Select a country", new
+       {
+           @class = "form-control selectpicker"
+       })
+            <input type="submit" name="Submit" value="Confirm" />
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('.selectpicker').selectpicker({
+                liveSearch: true,
+                liveSearchNormalize: true,
+                liveSearchPlaceholder: "Country name",
+                virtualScroll: true
+            });
+        });
+    </script>
+}

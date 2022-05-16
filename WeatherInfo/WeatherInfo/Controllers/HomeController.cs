@@ -19,14 +19,8 @@ namespace WeatherInfo.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(WeatherCityListModel model)
         {
-            var cityList = OpenWeatherMap.CityList;
-            var model = new WeatherCityListModel
-            {
-                Cities = cityList
-            };
-
             return View(model);
         }
 
@@ -55,6 +49,28 @@ namespace WeatherInfo.Controllers
                 Report = report
             };
             return View("Weather", model);
+        }
+
+        public IActionResult Country()
+        {
+            var cityList = OpenWeatherMap.CityList;
+            var model = new CountryListModel
+            {
+                CountryList = cityList.GroupBy(x => x.Country).Select(x => x.First().Country).Distinct().ToList()
+            };
+
+            return View(model);
+        }
+
+        public IActionResult CountrySelect(string country)
+        {
+            var cityList = OpenWeatherMap.CityList;
+            var model = new WeatherCityListModel
+            {
+                Cities = cityList.Where(x => x.Country == country).GroupBy(x => x.Name).Select(x => x.FirstOrDefault()).OrderBy(x => x.Name).ToList()
+            };
+
+            return View("Index", model);
         }
     }
 }
