@@ -67,7 +67,7 @@ namespace WeatherInfo.Controllers
             var cityList = OpenWeatherMap.CityList;
             var model = new WeatherCityListModel
             {
-                Cities = cityList.Where(x => x.Country == country).ToList()
+                Cities = cityList.Where(x => x.Country == country).GroupBy(x => x.Name).Select(x => x.FirstOrDefault()).OrderBy(x => x.Name).ToList()
             };
 
             return View("Index", model);
